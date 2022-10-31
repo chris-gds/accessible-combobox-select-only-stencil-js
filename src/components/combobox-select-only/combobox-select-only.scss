@@ -1,0 +1,140 @@
+$border-base-radius: 4px;
+$border-base-width: 1px;
+$width: 375px;
+$size-base: 100%;
+$font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$color-base: #363737;
+$highlight-colour: #000000;
+$white: #ffffff;
+
+$icon-arrow-down: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3C!--! Font Awesome Pro 6.1.2 by %40fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons  Inc. --%3E%3Cpath d='M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z'/%3E%3C/svg%3E");
+
+$icon-arrow-up: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3C!--! Font Awesome Pro 6.1.2 by %40fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons  Inc. --%3E%3Cpath d='M416 352c-8.188 0-16.38-3.125-22.62-9.375L224 173.3l-169.4 169.4c-12.5 12.5-32.75 12.5-45.25 0s-12.5-32.75 0-45.25l192-192c12.5-12.5 32.75-12.5 45.25 0l192 192c12.5 12.5 12.5 32.75 0 45.25C432.4 348.9 424.2 352 416 352z'/%3E%3C/svg%3E");
+
+$icon-checkbox-empty: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3C!--! Font Awesome Pro 6.1.2 by %40fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons  Inc. --%3E%3Cpath d='M384 32C419.3 32 448 60.65 448 96V416C448 451.3 419.3 480 384 480H64C28.65 480 0 451.3 0 416V96C0 60.65 28.65 32 64 32H384zM339.8 211.8C350.7 200.9 350.7 183.1 339.8 172.2C328.9 161.3 311.1 161.3 300.2 172.2L192 280.4L147.8 236.2C136.9 225.3 119.1 225.3 108.2 236.2C97.27 247.1 97.27 264.9 108.2 275.8L172.2 339.8C183.1 350.7 200.9 350.7 211.8 339.8L339.8 211.8z'/%3E%3C/svg%3E");
+
+$icon-checkbox-filled: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3C!--! Font Awesome Pro 6.1.2 by %40fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons  Inc. --%3E%3Cpath d='M384 32C419.3 32 448 60.65 448 96V416C448 451.3 419.3 480 384 480H64C28.65 480 0 451.3 0 416V96C0 60.65 28.65 32 64 32H384zM384 80H64C55.16 80 48 87.16 48 96V416C48 424.8 55.16 432 64 432H384C392.8 432 400 424.8 400 416V96C400 87.16 392.8 80 384 80z'/%3E%3C/svg%3E");
+
+:host {
+  display: block;
+
+  h3 {
+    font-family: $font-family;
+  }
+
+  .dropdown-wrapper {
+    max-width: $width;
+  }
+
+  // Button
+  .combobox {
+    font-size: $size-base;
+    font-family: $font-family;
+    text-align: left;
+    padding: 10px 25px 10px 10px;
+    position: relative;
+    background: $white;
+    color: $color-base;
+    border: $border-base-width solid $color-base;
+    border-radius: $border-base-radius $border-base-radius;
+
+    // Button once expanded alter bottom borders to flow seamlessly into dropdown
+    &[aria-expanded='true'] {
+      border-radius: $border-base-radius $border-base-radius 0 0;
+      border-bottom: none;
+    }
+
+    // Button create down-arrow icon
+    &:after {
+      display: block;
+      content: ' ';
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      width: 1em;
+      height: 1em;
+      background-image: $icon-arrow-down;
+      background-size: cover;
+    }
+  }
+
+  // Button change icon upon open
+  .combobox[aria-expanded='true']::after {
+    background-image: $icon-arrow-up;
+  }
+
+  // Create "X selected" badge
+  .combobox__total-selected {
+    float: right;
+    font-size: $size-base * 0.875; // 14px;
+    margin-right: 1em;
+    background: $highlight-colour;
+    color: $white;
+    padding: 0 0.3em;
+    border-radius: 5px;
+    border: 1px solid $highlight-colour;
+  }
+
+  // List options
+  .combobox__list {
+    width: $width;
+    max-height: 11em;
+    padding: 0;
+    overflow-y: auto;
+    margin: 0;
+    box-sizing: border-box;
+    z-index: 1;
+    background: $white;
+    border: $border-base-width solid $color-base;
+    border-radius: 0 0 $border-base-radius $border-base-radius;
+    border-top: none;
+    font-family: $font-family;
+  }
+
+  .combobox__list-item {
+    display: block;
+    padding: 0 1em 0 2.2em;
+    position: relative;
+    line-height: 1.8em;
+    font-size: $size-base; // 16px;
+
+    &:hover,
+    &.focus {
+      background: $highlight-colour;
+      color: $white;
+      // Invert colours when being interacted with once open
+      &:before,
+      &:after {
+        filter: invert(1);
+      }
+    }
+  }
+
+  .combobox__list-item {
+    &:before {
+      content: ' ';
+      font-weight: 900;
+      position: absolute;
+      left: 0.2em;
+      width: 1.1em;
+      height: 1.4em;
+      display: block;
+      background-repeat: no-repeat;
+      right: 0.3em;
+      background-size: contain;
+      margin: 0.2em 0 0.2em 0.4em;
+      background-position: center center;
+    }
+    // List opens, create checkbox icon before list item - unchecked.
+    &[aria-selected='false']::before {
+      background-image: $icon-checkbox-filled;
+    }
+    // List opened, list item selected - checked icon
+    &[aria-selected='true']::before {
+      background-image: $icon-checkbox-empty;
+    }
+  }
+  .hidden {
+    display: none;
+  }
+}
