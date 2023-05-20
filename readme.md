@@ -14,7 +14,7 @@ npm start
 
 ## Video Demo
 
-https://github.com/chris-gds/accessible-combobox-select-only-stencil-js/assets/71266765/b8e020b5-1e40-479a-8a94-fbea2adb9af5
+https://github.com/chris-gds/accessible-combobox-select-only-stencil-js/assets/71266765/0718a49d-fa26-4d64-8224-3be8e22bbb34
 
 ## About
 
